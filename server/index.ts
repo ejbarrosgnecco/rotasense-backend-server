@@ -22,6 +22,7 @@ import schedule_routes from "./routes/schedules/schedules";
 
 //-- Organisation
 import organisation_routes from "./routes/organisation/organisation";
+import axios from "axios";
 
 // App configuration
 const app = express();
@@ -36,13 +37,21 @@ app.use("/account", account_routes);
 app.use("/schedules", schedule_routes);
 
 //-- Organisation
-app.use("/organisation", organisation_routes)
+app.use("/organisation", organisation_routes);
 
-console.log("Connecting...")
-fetch('https://api.ipify.org?format=json')
-   .then(response => response.json())
-   .then(data => console.log(data.ip));
-   
+console.log("Connecting...");
+
+(async () => {
+    await axios({
+        method: "GET",
+        url: 'https://api.ipify.org?format=json'
+    })
+    .then((value) => {
+        console.log(value.data)
+    })
+})
+
+
 mongoose.connect(MONGO_CONNECTION_STRING)
     .then(() => {
         app.listen(5002, () => {
