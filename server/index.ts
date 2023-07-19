@@ -39,6 +39,10 @@ app.use("/schedules", schedule_routes);
 app.use("/organisation", organisation_routes)
 
 console.log("Connecting...")
+fetch('https://api.ipify.org?format=json')
+   .then(response => response.json())
+   .then(data => console.log(data.ip));
+   
 mongoose.connect(MONGO_CONNECTION_STRING)
     .then(() => {
         app.listen(5002, () => {
