@@ -5,6 +5,17 @@ import { SuccessResponse, UserRecord } from "../../../../types.config";
 
 const addNewTeam = async (props: AddTeamFields, user: UserRecord): Promise<SuccessResponse> => {
     return await new Promise<SuccessResponse>( async (resolve) => {
+        // Ensure that team doesn't already exist
+        await Team.findOne({ name: props.name, "organisation._id": user.organisation._id })
+            .then((teams) => {
+                if(teams !== null) {
+                    return resolve({
+                        success: false,
+                        reason: "A team with this name already exists"
+                    })
+                }
+            })
+
         const newTeam = new Team({
             ...props,
             organisation: {

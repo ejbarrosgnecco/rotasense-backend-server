@@ -1,5 +1,4 @@
 import jwt from "jsonwebtoken"
-import PORTAL_ACCESS_JWT_SECRET from "../../../configuration/access_tokens/portal/secret";
 
 interface TokenData {
     userId: string,
@@ -25,7 +24,7 @@ interface TokenResponse {
 }
 
 const generatePortalAccessToken = (props: TokenData): TokenResponse => {
-    const newToken = jwt.sign(props, PORTAL_ACCESS_JWT_SECRET, { expiresIn: 86400 });
+    const newToken = jwt.sign(props, process.env.PORTAL_ACCESS_SECRET, { expiresIn: 86400 });
 
     return {
         accessToken: newToken,

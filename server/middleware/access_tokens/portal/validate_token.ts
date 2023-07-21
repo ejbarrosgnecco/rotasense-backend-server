@@ -1,6 +1,5 @@
 import { NextFunction, Request, Response } from "express";
 import jwt from "jsonwebtoken"
-import PORTAL_ACCESS_JWT_SECRET from "../../../configuration/access_tokens/portal/secret";
 import User from "../../../configuration/mongoose/schemas/organisations/users";
 import { UserRecord } from "../../../types.config";
 
@@ -11,7 +10,7 @@ const validatePortalAccessToken =  async (req: Request, res: Response, next: Nex
     const accessToken = authHeader.split(" ")[1];
 
     try {
-        const validityCheck: any = jwt.verify(accessToken, PORTAL_ACCESS_JWT_SECRET);
+        const validityCheck: any = jwt.verify(accessToken, process.env.PORTAL_ACCESS_SECRET);
 
         if(validityCheck) {
             // Now check that all user details are still correct

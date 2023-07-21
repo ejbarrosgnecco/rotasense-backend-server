@@ -25,7 +25,8 @@ const getUsers = async ({ orgId, teamId, abbreviated }: { orgId: string, teamId?
                         data = users.map(user => {
                             return {
                                 _id: user._id.toString(),
-                                full_name: user.first_name + " " + user.last_name
+                                full_name: user.first_name + " " + user.last_name,
+                                email_address: user.email_address
                             }
                         }).sort((a, b) => a.full_name.localeCompare(b.full_name))
                     }

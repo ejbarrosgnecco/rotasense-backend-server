@@ -164,6 +164,21 @@ export const addTeamValidation: ValidationParams = {
                 ],
                 minLength: 1
             }
+        },
+        {
+            key: "roles",
+            required: true,
+            valueConstraints: {
+                type: "array"
+            },
+            nestedValues: {
+                freeArray: false,
+                valueConstraints: {
+                    type: "string"
+                },
+                minLength: 1
+            },
+            
         }
     ]
 }

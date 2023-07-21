@@ -22,7 +22,7 @@
     "typescript": "^5.1.6"
   },
   "dependencies": {
-    "api-field-validation-middleware": "^1.0.10",
+    "api-field-validation-middleware": "^1.0.13",
     "bcrypt": "^5.1.0",
     "body-parser": "^1.20.2",
     "cors": "^2.8.5",
