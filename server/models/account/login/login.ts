@@ -1,12 +1,12 @@
 import User from "../../../configuration/mongoose/schemas/organisations/users";
 import { SuccessResponse } from "../../../types.config";
-import { PermittedFields } from "./resources/permitted_fields";
+import { PermittedFields } from "./resources/permittedFields";
 import bcrypt from "bcrypt";
-import generatePortalAccessToken from "../../../middleware/access_tokens/portal/generate_token";
+import generatePortalAccessToken from "../../../middleware/accessTokens/portal/generateToken";
 
 const accountLogin = async (props: PermittedFields): Promise<SuccessResponse> => {
     return await new Promise<SuccessResponse>( async (resolve) => {
-        await User.findOne({ email_address: props.emailAddress })
+        await User.findOne({ emailAddress: props.emailAddress })
             .then( async (user) => {
                 if(user === null) {
                     resolve({
@@ -20,9 +20,9 @@ const accountLogin = async (props: PermittedFields): Promise<SuccessResponse> =>
                     if(comparePassword === true) {
                         const newAccessToken = generatePortalAccessToken({
                             userId: user._id.toString(),
-                            emailAddress: user.email_address,
-                            firstName: user.first_name,
-                            lastName: user.last_name,
+                            emailAddress: user.emailAddress,
+                            firstName: user.firstName,
+                            lastName: user.lastName,
                             organisation: {
                                 _id: user.organisation._id.toString(),
                                 name: user.organisation.name

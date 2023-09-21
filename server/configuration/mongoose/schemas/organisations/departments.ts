@@ -16,7 +16,7 @@ const DepartmentSchema = new Schema({
             required: true
         }
     },
-    team_count: {
+    teamCount: {
         type: Number,
         required: false,
         default: 0

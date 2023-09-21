@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 import express from "express"
 import bodyParser from "body-parser";
 import cors from "cors"
-import MONGO_CONNECTION_STRING from "./configuration/mongoose/connection_string";
+import MONGO_CONNECTION_STRING from "./configuration/mongoose/connectionString";
 import { UserRecord } from "./types.config";
 
 declare global {
@@ -15,28 +15,30 @@ declare global {
 
 // Route imports
 //-- Account
-import account_routes from "./routes/account/account";
+import accountRoutes from "./routes/account/account";
 
 //-- Schedules
-import schedule_routes from "./routes/schedules/schedules";
+import scheduleRoutes from "./routes/schedules/schedules";
 
 //-- Organisation
-import organisation_routes from "./routes/organisation/organisation";
+import organisationRoutes from "./routes/organisation/organisation";
 
 // App configuration
 const app = express();
 app.use(bodyParser.json())
-app.use(cors());
+app.use(cors({
+    methods: ["POST", "PUT", "GET", "DELETE", "COPY"]
+}));
 
 // Route declarations
 //-- Account
-app.use("/account", account_routes);
+app.use("/account", accountRoutes);
 
 //-- Schedules
-app.use("/schedules", schedule_routes);
+app.use("/schedules", scheduleRoutes);
 
 //-- Organisation
-app.use("/organisation", organisation_routes);
+app.use("/organisation", organisationRoutes);
 
 console.log("Connecting...");
 mongoose.connect(MONGO_CONNECTION_STRING)

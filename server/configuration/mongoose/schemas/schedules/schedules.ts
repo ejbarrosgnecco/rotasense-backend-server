@@ -15,6 +15,7 @@ const SchedulesSchema = new Schema({
     },
     date: {
         type: String,
+        index: true,
         required: true
     },
     team: {
@@ -43,7 +44,7 @@ const SchedulesSchema = new Schema({
                             type: String,
                             required: true
                         },
-                        email_address: {
+                        emailAddress: {
                             type: String,
                             required: true
                         },

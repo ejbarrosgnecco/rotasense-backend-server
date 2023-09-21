@@ -13,7 +13,7 @@ const OrganisationsSchema = new Schema({
         type: String,
         required: true
     },
-    employee_size: {
+    employeeSize: {
         type: String,
         required: true
     },
@@ -27,7 +27,7 @@ const OrganisationsSchema = new Schema({
                 type: String,
                 required: true
             },
-            email_address: {
+            emailAddress: {
                 type: String,
                 required: true
             }

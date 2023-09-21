@@ -30,7 +30,7 @@ const TeamsSchema = new Schema({
             }
         }
     },
-    operating_hours: {
+    operatingHours: {
         type: {
             from: {
                 type: String,
@@ -56,7 +56,7 @@ const TeamsSchema = new Schema({
             required: false,
             default: false
         },
-        restricted_to: {
+        restrictedTo: {
             type: [String],
             required: false
         }
@@ -71,7 +71,7 @@ const TeamsSchema = new Schema({
                 type: String,
                 required: true
             },
-            email_address: {
+            emailAddress: {
                 type: String,
                 required: true
             }
